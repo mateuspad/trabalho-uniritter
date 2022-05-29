@@ -1,28 +1,54 @@
 package com.example.geolocation_application.model;
 
+import android.location.Address;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.Objects;
 
 public class Usuario implements Parcelable {
-    private String login;
-    private String senha;
-    private String nome;
-    private int matricula;
+    private int id;
+    private String name;
+    private String userName;
+    private String email;
+    private Address address;
+    private String phone;
+    private String website;
 
-    public Usuario(int matricula, String login, String senha, String nome) {
-        this.login = login;
-        this.senha = senha;
-        this.nome = nome;
-        this.matricula = matricula;
+    public Usuario(int id, String name, String userName, String email) {
+        this.id = id;
+        this.name = name;
+        this.userName = userName;
+        this.email = email;
+        this.address = address;
+        this.phone = phone;
+        this.website = website;
     }
 
     protected Usuario(Parcel in) {
-        login = in.readString();
-        senha = in.readString();
-        nome = in.readString();
-        matricula = in.readInt();
+        id = in.readInt();
+        name = in.readString();
+        userName = in.readString();
+        email = in.readString();
+        address = in.readParcelable(Address.class.getClassLoader());
+        phone = in.readString();
+        website = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(getId());
+        parcel.writeString(getName());
+        parcel.writeString(getUserName());
+        parcel.writeString(getEmail());
+        parcel.writeString(getAddress().toString());
+        parcel.writeString(getPhone());
+        parcel.writeString(getWebsite());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {
@@ -37,36 +63,60 @@ public class Usuario implements Parcelable {
         }
     };
 
-    public String getLogin() {
-        return login;
+    public int getId() {
+        return id;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getSenha() {
-        return senha;
+    public String getName() {
+        return name;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getNome() {
-        return nome;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public int getMatricula() {
-        return matricula;
+    public String getEmail() {
+        return email;
     }
 
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
     }
 
     @Override
@@ -74,25 +124,12 @@ public class Usuario implements Parcelable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return matricula == usuario.matricula && Objects.equals(login, usuario.login) && Objects.equals(senha, usuario.senha) && Objects.equals(nome, usuario.nome);
+        return id == usuario.id && Objects.equals(name, usuario.name) && Objects.equals(userName, usuario.userName) && Objects.equals(email, usuario.email) && Objects.equals(address, usuario.address) && Objects.equals(phone, usuario.phone) && Objects.equals(website, usuario.website);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login, senha, nome, matricula);
+        return Objects.hash(id, name, userName, email, address, phone, website);
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(getMatricula());
-        parcel.writeString(getLogin());
-        parcel.writeString(getSenha());
-        parcel.writeString(getNome());
-
-    }
 }

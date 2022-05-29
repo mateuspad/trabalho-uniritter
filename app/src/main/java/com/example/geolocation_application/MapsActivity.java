@@ -1,90 +1,55 @@
 package com.example.geolocation_application;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
+import android.webkit.WebView;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.example.geolocation_application.databinding.ActivityMapsBinding;
-
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
-
-    private GoogleMap mMap;
-    private ActivityMapsBinding binding;
+public class MapsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityMapsBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        setContentView(R.layout.activity_maps);
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
+    public void buscarInformacoesGPS(View v) {
 
-        // Add a marker in Sydney and move the camera
-        LatLng shopping = new LatLng(-29.95070309169006, -50.996429355483556);
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(@NonNull LatLng latLng) {
-                Double latitude = latLng.latitude;
-                Double longitude = latLng.longitude;
-                Toast.makeText(MapsActivity.this, "onClick Lat:" + latitude + "long" + longitude, Toast.LENGTH_SHORT).show();
-                mMap.addMarker(
-                    new MarkerOptions()
-                            .position(latLng)
-                            .title("Local")
-                            .snippet("Descriçao")
-                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
-                );
-            }
-        });
-        mMap.setOnMapLongClickListener(new GoogleMap.OnMapLongClickListener() {
-            @Override
-            public void onMapLongClick(@NonNull LatLng latLng) {
-                Double latitude = latLng.latitude;
-                Double longitude = latLng.longitude;
-                Toast.makeText(MapsActivity.this, "onLong Lat:" + latitude + "long" + longitude, Toast.LENGTH_SHORT).show();
-                mMap.addMarker(
-                        new MarkerOptions()
-                                .position(latLng)
-                                .title("Local")
-                                .snippet("Descriçao")
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE))
-                );
-            }
-        });
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)   != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-        mMap.addMarker(
-                new MarkerOptions()
-                        .position(shopping)
-                        .title("Shopping")
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE))
-        );
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(shopping, 18));
+            ActivityCompat.requestPermissions(MapsActivity.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(MapsActivity.this, new String[] {Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            ActivityCompat.requestPermissions(MapsActivity.this, new String[] {Manifest.permission.ACCESS_NETWORK_STATE}, 1);
+            return;
+        }
+
+        LocationManager  mLocManager  = (LocationManager) getSystemService(MapsActivity.this.LOCATION_SERVICE);
+        LocationListener mLocListener = new MinhaLocalizacaoListener();
+
+        mLocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocListener);
+
+        if (mLocManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            String texto = "Latitude.: " + MinhaLocalizacaoListener.latitude + "\n" +
+                    "Longitude: " + MinhaLocalizacaoListener.longitude + "\n";
+            Toast.makeText(MapsActivity.this, texto, Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(MapsActivity.this, "GPS DESABILITADO.", Toast.LENGTH_LONG).show();
+        }
+
+        this.mostrarGoogleMaps(MinhaLocalizacaoListener.latitude, MinhaLocalizacaoListener.longitude);
+    }
+
+    public void mostrarGoogleMaps(double latitude, double longitude) {
+        WebView wv = findViewById(R.id.webv);
+        wv.getSettings().setJavaScriptEnabled(true);
+        wv.loadUrl("https://www.google.com/maps/search/?api=1&query=" + latitude + "," + longitude);
     }
 }

@@ -3,11 +3,13 @@
     package="com.example.geolocation_application">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Geolocalização"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Geolocation_application">
@@ -27,6 +29,23 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDZyMHnBWv0d9QPl-nclWYTCANtmfi-6AY" />
 
+
+        <activity
+            android:name=".SetimaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SextaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuintaActivity"
+            android:exported="false" />
+        <activity
+            android:name=".QuartaActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".TerceiraActivity"
+            android:exported="false" />
         <activity
             android:name=".MapsActivity"
             android:exported="false"

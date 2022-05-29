@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Nossa Primeira App</string>
     <string name="botao1">vai para outra Activity</string>
-    <string name="turma">Dev. Mobile</string>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps">Mapa</string>
 </resources>

@@ -3,10 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/activity_main.xml" value="0.16847826086956522" />
-        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/activity_maps.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.158" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/drawable/bg.xml" value="0.158" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/drawable/ic_launcher_background.xml" value="0.158" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/activity_maps.xml" value="0.25" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/activity_quarta.xml" value="0.22" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/activity_quinta.xml" value="0.16" />
         <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/activity_segunda.xml" value="0.16847826086956522" />
-        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/layout_usuario_viewholder.xml" value="0.16847826086956522" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/activity_setima.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/activity_sexta.xml" value="0.22" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/activity_terceira.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/layout_album_viewholder.xml" value="0.33" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/layout_comments_viewholder.xml" value="0.33" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/layout_photos_viewholder.xml" value="0.33" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/layout_posts_viewholder.xml" value="0.33" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/layout_todos_viewholder.xml" value="0.67" />
+        <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/layout/layout_usuario_viewholder.xml" value="0.33" />
         <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1195" />
         <entry key="..\:/Users/mateu/AndroidStudioProjects/Geolocation_application/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1195" />
       </map>

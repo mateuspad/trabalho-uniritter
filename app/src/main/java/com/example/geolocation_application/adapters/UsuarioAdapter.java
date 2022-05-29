@@ -5,6 +5,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
+
 import java.util.List;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.geolocation_application.R;
@@ -28,28 +29,27 @@ public class UsuarioAdapter extends RecyclerView.Adapter<UsuarioAdapter.UsuarioV
 
     @Override
     public int getItemCount() {
-        // return 0;
         return listaUsuarios.size();
     }
 
     @Override
     public void onBindViewHolder(@NonNull UsuarioViewHolder holder, int position) {
-        holder.layout.findViewById(R.id.layoutDoFundo).setOnClickListener(new View.OnClickListener() {
+        holder.layout.findViewById(R.id.layoutDoFundoDoUsuario).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.layout.findViewById(R.id.estrelinha).setVisibility(View.VISIBLE);
-                listaUsuarios.get(position).setNome("Troquei para "+position);
-                ((TextView) holder.layout.findViewById(R.id.tvNome)).setText(listaUsuarios.get(position).getNome());
             }
         });
-        ((TextView) holder.layout.findViewById(R.id.tvLogin)).setText(listaUsuarios.get(position).getLogin());
-        ((TextView) holder.layout.findViewById(R.id.tvNome)).setText(listaUsuarios.get(position).getNome());
-        ((TextView) holder.layout.findViewById(R.id.tvMatricula)).setText(listaUsuarios.get(position).getMatricula()+"");
+        ((TextView) holder.layout.findViewById(R.id.tvId)).setText(Integer.toString(listaUsuarios.get(position).getId()));
+        ((TextView) holder.layout.findViewById(R.id.tvNome)).setText(listaUsuarios.get(position).getName());
+        ((TextView) holder.layout.findViewById(R.id.tvUserName)).setText(listaUsuarios.get(position).getUserName());
+        ((TextView) holder.layout.findViewById(R.id.tvEmail)).setText(listaUsuarios.get(position).getEmail());
+        ((TextView) holder.layout.findViewById(R.id.tvAdress)).setText(listaUsuarios.get(position).getAddress().toString());
+        ((TextView) holder.layout.findViewById(R.id.tvPhone)).setText(listaUsuarios.get(position).getPhone());
+        ((TextView) holder.layout.findViewById(R.id.tvWebSite)).setText(listaUsuarios.get(position).getWebsite());
     }
 
     class UsuarioViewHolder extends RecyclerView.ViewHolder {
         public View layout;
-
         public UsuarioViewHolder(@NonNull View itemView) {
             super(itemView);
             this.layout = itemView;

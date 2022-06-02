@@ -1,4 +1,4 @@
-# ✨ Geolocalização de usuários 📱
+# 📍 Geolocalização de usuários 👨‍💻
 Projeto desenvolvido em Java no Android Studio para a cadeira de Computação para Dispositivos Móveis da UniRitter.
 
 Proposta do professor👨‍🏫: 

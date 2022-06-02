@@ -29,17 +29,10 @@ public class TerceiraActivity extends AppCompatActivity implements Response.List
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terceira);
-
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://jsonplaceholder.typicode.com/posts";
-
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, this, this);
         queue.add(request);
-    }
-
-    @Override
-    public void onErrorResponse(VolleyError error) {
-
     }
 
     @Override
@@ -60,13 +53,14 @@ public class TerceiraActivity extends AppCompatActivity implements Response.List
         }
 
         PostsAdapter pAdapter = new PostsAdapter(list);
-
         RecyclerView rv = findViewById(R.id.rvPosts);
         rv.setAdapter(pAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(this);
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         rv.setLayoutManager(llm);
+    }
 
+    @Override
+    public void onErrorResponse(VolleyError error) {
     }
 }

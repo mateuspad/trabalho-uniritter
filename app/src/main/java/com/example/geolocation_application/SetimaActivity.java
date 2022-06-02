@@ -26,48 +26,44 @@ import java.util.List;
 
 public class SetimaActivity extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener {
 
-        @Override
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_setima);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_setima);
+        RequestQueue queue = Volley.newRequestQueue(this);
+        String url = "https://jsonplaceholder.typicode.com/comments";
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, this, this);
+        queue.add(request);
+    }
 
-            RequestQueue queue = Volley.newRequestQueue(this);
-            String url = "https://jsonplaceholder.typicode.com/comments";
+    @Override
+    public void onResponse(JSONArray response) {
+        List<Comments> list = new ArrayList<>();
 
-            JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, this, this);
-            queue.add(request);
-        }
+        for(int i = 0; i < response.length(); i++) {
+            try {
+                Log.d("onResponse: ", response.get(i).toString());
 
-        @Override
-        public void onErrorResponse(VolleyError error) {
-
-        }
-
-        @Override
-        public void onResponse(JSONArray response) {
-            List<Comments> list = new ArrayList<>();
-
-            for(int i = 0; i < response.length(); i++) {
-                try {
-                    Log.d("onResponse: ", response.get(i).toString());
-
-                    list.add(new Comments(response.getJSONObject(i).getInt("postId"),
-                            response.getJSONObject(i).getInt("id"),
-                            response.getJSONObject(i).getString("name"),
-                            response.getJSONObject(i).getString("email"),
-                            response.getJSONObject(i).getString("body")));
-                } catch(JSONException e) {
-                    e.printStackTrace();
-                }
+                list.add(new Comments(response.getJSONObject(i).getInt("postId"),
+                        response.getJSONObject(i).getInt("id"),
+                        response.getJSONObject(i).getString("name"),
+                        response.getJSONObject(i).getString("email")));
+            } catch(JSONException e) {
+                e.printStackTrace();
             }
-
-            CommentsAdapter cAdapter = new CommentsAdapter(list);
-
-            RecyclerView rv = findViewById(R.id.rvComments);
-            rv.setAdapter(cAdapter);
-            LinearLayoutManager llm = new LinearLayoutManager(this);
-
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-            rv.setLayoutManager(llm);
         }
+
+        CommentsAdapter cAdapter = new CommentsAdapter(list);
+        RecyclerView rv = findViewById(R.id.rvComments);
+        rv.setAdapter(cAdapter);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        rv.setLayoutManager(llm);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
+
+    }
+
 }

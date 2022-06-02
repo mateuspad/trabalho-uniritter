@@ -25,21 +25,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SextaActivity extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sexta);
-
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "https://jsonplaceholder.typicode.com/todos";
-
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, this, this);
         queue.add(request);
-    }
-
-    @Override
-    public void onErrorResponse(VolleyError error) {
-
     }
 
     @Override
@@ -60,12 +54,14 @@ public class SextaActivity extends AppCompatActivity implements Response.Listene
         }
 
         TodosAdapter tAdapter = new TodosAdapter(list);
-
         RecyclerView rv = findViewById(R.id.rvTodos);
         rv.setAdapter(tAdapter);
         LinearLayoutManager llm = new LinearLayoutManager(this);
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         rv.setLayoutManager(llm);
+    }
+
+    @Override
+    public void onErrorResponse(VolleyError error) {
     }
 }

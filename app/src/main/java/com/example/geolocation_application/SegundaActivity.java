@@ -25,17 +25,14 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SegundaActivity extends AppCompatActivity implements Response.Listener<JSONArray>,
-        Response.ErrorListener{
+public class SegundaActivity extends AppCompatActivity implements Response.Listener<JSONArray>, Response.ErrorListener{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_segunda);
-
         RequestQueue queue = Volley.newRequestQueue(this);
         String url ="https://jsonplaceholder.typicode.com/users";
-
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null,this, this);
         queue.add(request);
     }
@@ -59,17 +56,14 @@ public class SegundaActivity extends AppCompatActivity implements Response.Liste
             }
         }
         UsuarioAdapter uAdapt = new UsuarioAdapter(lista);
-
         RecyclerView rv = findViewById(R.id.rvUsuarios);
         rv.setAdapter(uAdapt);
         LinearLayoutManager llm = new LinearLayoutManager(this);
-
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this,3);
         rv.setLayoutManager(llm);
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
-
     }
 }

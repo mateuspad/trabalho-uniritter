@@ -10,14 +10,12 @@ public class Comments implements Parcelable {
     private int id;
     private String name;
     private String email;
-    private String body;
 
-    public Comments(int postId, int id, String name, String email, String body) {
+    public Comments(int postId, int id, String name, String email) {
         this.postId = postId;
         this.id = id;
         this.name = name;
         this.email = email;
-        this.body = body;
     }
 
     protected Comments(Parcel in) {
@@ -25,7 +23,6 @@ public class Comments implements Parcelable {
         id = in.readInt();
         name = in.readString();
         email = in.readString();
-        body = in.readString();
     }
 
     public static final Creator<Comments> CREATOR = new Creator<Comments>() {
@@ -72,25 +69,17 @@ public class Comments implements Parcelable {
         this.email = email;
     }
 
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comments comment = (Comments) o;
-        return postId == comment.postId && id == comment.id && Objects.equals(name, comment.name) && Objects.equals(email, comment.email) && Objects.equals(body, comment.body);
+        return postId == comment.postId && id == comment.id && Objects.equals(name, comment.name) && Objects.equals(email, comment.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(postId, id, name, email, body);
+        return Objects.hash(postId, id, name, email);
     }
 
     @Override
@@ -104,6 +93,5 @@ public class Comments implements Parcelable {
         parcel.writeInt(getId());
         parcel.writeString(getName());
         parcel.writeString(getEmail());
-        parcel.writeString(getBody());
     }
 }

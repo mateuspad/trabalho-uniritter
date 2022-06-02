@@ -12,9 +12,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        android:text="Photos"
-        android:textStyle="bold"
+        android:text="Albums"
         android:textColor="#1565C0"
+        android:textStyle="bold"
         android:textSize="60px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,16 +22,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.177"
-        tools:text="Photos" />
+        tools:text="Album" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvPhoto"
+        android:id="@+id/rvAlbums"
         android:layout_width="match_parent"
         android:layout_height="290dp"
         android:layout_marginTop="220dp"
         android:background="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

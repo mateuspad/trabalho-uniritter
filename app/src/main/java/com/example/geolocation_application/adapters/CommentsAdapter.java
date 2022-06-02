@@ -43,7 +43,6 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.Commen
         ((TextView) holder.layout.findViewById(R.id.cUserId)).setText(Integer.toString(listComments.get(position).getId()));
         ((TextView) holder.layout.findViewById(R.id.cName)).setText(listComments.get(position).getName());
         ((TextView) holder.layout.findViewById(R.id.cEmail)).setText(listComments.get(position).getEmail());
-        ((TextView) holder.layout.findViewById(R.id.cBody)).setText(listComments.get(position).getBody());
     }
 
     @Override
